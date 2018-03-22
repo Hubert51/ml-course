@@ -1,0 +1,107 @@
+
+\documentclass[openany,11pt]{homework}
+
+\coursename{ELEN 4903 Machine Learning (Spring 2018)} % DON'T CHANGE THIS
+
+\studname{Pratyus Pati}    % YOUR NAME GOES HERE
+\studmail{pp2636@columbia.edu}% YOUR UNI GOES HERE
+\hwNo{2}                   % THE HOMEWORK NUMBER GOES HERE
+
+% Uncomment the next line if you want to use \includegraphics.
+\usepackage{graphicx}
+
+\begin{document}
+\maketitle
+
+\section*{Problem 1(a)}
+
+\begin{align}
+\hat{\pi}_{ML} & = \operatornamewithlimits{arg\,max}_{\pi} p(y_1, y_2, ..., y_n \mid \pi) \\
+			   & = \operatornamewithlimits{arg\,max}_{\pi} \pi^{n\mu_y}(1-\pi)^{n-n\mu_y} \\
+			   & = \operatornamewithlimits{arg\,max}_{\pi} \ln(\pi^{n\mu_y}(1-\pi)^{n-n\mu_y}) \\
+			   & = \operatornamewithlimits{arg\,max}_{\pi} [(n\mu_y) (\ln \pi)] + [(n - n\mu_y)(\ln (1-\pi))]
+\end{align}
+
+On taking the derivative w.r.t. $\pi$\\
+\begin{align}
+\frac{\partial }{\partial \pi} [(n\mu_y) (\ln \pi)] + [(n - n\mu_y)(\ln (1-\pi))]
+& = \left[n\mu_y \frac{\partial \ln \pi}{\partial \pi}\right] + \left[(n - n\mu_y)\left(\frac{\partial \ln(1-\pi)}{\partial \pi}\right)\right] \\
+& = \frac{n\mu_y}{\pi} -\frac{n-n\mu_y}{1-\pi}
+\end{align}
+
+On setting the partial derivative w.r.t $\pi$ as 0 to get $\hat{\pi}_{ML}$,
+\begin{align}
+\frac{n\mu_y}{\hat{\pi}_{ML}} -\frac{n-n\mu_y}{1-\hat{\pi}_{ML}} & = 0 \\
+\Rightarrow n\mu_y(1-\hat{\pi}_{ML}) - (n-n\mu_y)(\hat{\pi}_{ML}) & = 0 \\
+\Rightarrow n\mu_y - n\mu_y\hat{\pi}_{ML} - n\hat{\pi}_{ML} + n\mu_y\hat{\pi}_{ML} & = 0 \\
+\Rightarrow n\mu_y - n\hat{\pi}_{ML} & = 0 \\
+\Rightarrow \hat{\pi}_{ML} & = \mu_y = \frac{\sum_{i=1}^{n} y_i}{n}
+\end{align}
+
+\section*{Problem 1(b)}
+
+\begin{align}
+\hat{\theta_y^{1}}_{ML} & = \operatornamewithlimits{arg\,max}_{\theta_y^{1}} p(x_1, x_2, ..., x_n \mid \theta_y^{1}) \\
+\end{align}
+
+Splitting the data into the two classes: \\
+\begin{align}
+I_0 = \{i \mid y_i = 0\} \\
+I_1 = \{i \mid y_i = 1\} \\
+I_0 
+\end{align}
+
+Such that:
+\mid I_0 \mid = n_0 
+\mid I_1 \mid = n_1
+
+Such that &$n_0 + n_1 = n$
+
+
+
+On taking the derivative w.r.t. $\theta_{0}^{1}$\\
+\begin{align}
+\frac{\partial }{\partial \pi} [(n\mu_y) (\ln \pi)] + [(n - n\mu_y)(\ln (1-\pi))]
+& = \left[n\mu_y \frac{\partial \ln \pi}{\partial \pi}\right] + \left[(n - n\mu_y)\left(\frac{\partial \ln(1-\pi)}{\partial \pi}\right)\right] \\
+& = \frac{n\mu_y}{\pi} -\frac{n-n\mu_y}{1-\pi}
+\end{align}
+
+On setting the partial derivative w.r.t $\pi$ as 0 to get $\hat{\pi}_{ML}$,
+\begin{align}
+\frac{n\mu_y}{\hat{\pi}_{ML}} -\frac{n-n\mu_y}{1-\hat{\pi}_{ML}} & = 0 \\
+\Rightarrow n\mu_y(1-\hat{\pi}_{ML}) - (n-n\mu_y)(\hat{\pi}_{ML}) & = 0 \\
+\Rightarrow n\mu_y - n\mu_y\hat{\pi}_{ML} - n\hat{\pi}_{ML} + n\mu_y\hat{\pi}_{ML} & = 0 \\
+\Rightarrow n\mu_y - n\hat{\pi}_{ML} & = 0 \\
+\Rightarrow \hat{\pi}_{ML} & = \mu_y = \frac{\sum_{i=1}^{n} y_i}{n}
+\end{align}
+
+On taking the derivative w.r.t. $\theta$\\
+\begin{align}
+\frac{\partial }{\partial \pi} [(n\mu_y) (\ln \pi)] + [(n - n\mu_y)(\ln (1-\pi))]
+& = \left[n\mu_y \frac{\partial \ln \pi}{\partial \pi}\right] + \left[(n - n\mu_y)\left(\frac{\partial \ln(1-\pi)}{\partial \pi}\right)\right] \\
+& = \frac{n\mu_y}{\pi} -\frac{n-n\mu_y}{1-\pi}
+\end{align}
+
+On setting the partial derivative w.r.t $\pi$ as 0 to get $\hat{\pi}_{ML}$,
+\begin{align}
+\frac{n\mu_y}{\hat{\pi}_{ML}} -\frac{n-n\mu_y}{1-\hat{\pi}_{ML}} & = 0 \\
+\Rightarrow n\mu_y(1-\hat{\pi}_{ML}) - (n-n\mu_y)(\hat{\pi}_{ML}) & = 0 \\
+\Rightarrow n\mu_y - n\mu_y\hat{\pi}_{ML} - n\hat{\pi}_{ML} + n\mu_y\hat{\pi}_{ML} & = 0 \\
+\Rightarrow n\mu_y - n\hat{\pi}_{ML} & = 0 \\
+\Rightarrow \hat{\pi}_{ML} & = \mu_y = \frac{\sum_{i=1}^{n} y_i}{n}
+\end{align}
+
+
+\section*{Problem 1(c)}
+
+\section*{Problem 2(a)}
+
+\section*{Problem 2(b)}
+
+\section*{Problem 2(c)}
+
+\section*{Problem 1(d)}
+
+\section*{Problem 1(e)}
+
+\end{document}
