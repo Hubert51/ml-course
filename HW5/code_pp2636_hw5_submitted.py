@@ -4,30 +4,22 @@ import seaborn as sns
 import pandas as pd
 
 class MarkovChain():
-    def __init__(self, M, i):
+    def __init__(self, M):
         self.M = M
         self.n = M.shape[0]
-        print("Step 1 - Calculating initial state probabilities...")
         self.w = (1/self.n)*(np.ones(self.n)).reshape(1, self.n)
-        print("Initial state probabilities = {}".format(self.w))
         self.iter = 0
         self.w_hist = []
-        self.i = i
         self.calc_w_inf()
     
     def calc_w_inf(self):
-        print("Step 2 - Calculating stationary state probability distribution...")
         eigen_values, eigen_vectors = np.linalg.eig(self.M.T)
         eigen_values = np.real(eigen_values)
-        print("Calculated Eigen Vectors and Eigen Values")
         diff_to_1 = np.abs(eigen_values - 1)
         diff_sort = np.argsort(diff_to_1)
-        print("Top 5 eigen values are {}".format(eigen_values[diff_sort][:5]))
-        w_inf = eigen_vectors[:,diff_sort][:, self.i]
-        print("Index of Eigen-Vector picked: {}".format(self.i+1))
+        w_inf = eigen_vectors[:,diff_sort][:, 1:2]
         w_inf = np.real(w_inf.flatten())
         self.w_inf = w_inf/np.sum(w_inf)
-        print("Stationary probability distribution set as {}".format(self.w_inf))
         
     def update(self):
         self.w = self.w.dot(self.M)
@@ -159,14 +151,14 @@ def get_top_words_topic(W, vocab, k = 10):
         topic_words.append(word_score)
     return topic_words
 
-def test_part_1(i):
+def test_part_1():
     scores = np.genfromtxt('CFB2017_scores.csv', delimiter=',')
     with open('TeamNames.txt', 'r') as f:
         team_names = f.read().split('\n')
     team_names = team_names[:-1]
     num_of_teams = len(team_names)
     M = create_transition_matrix(scores, num_of_teams)
-    MC = MarkovChain(M, i)
+    MC = MarkovChain(M)
     MC.run(10000)
     for i in [10, 100, 1000, 10000]:
         heading = "Top 25 teams after {} iterations".format(i)
@@ -207,11 +199,7 @@ def test_part_2():
     pretty_print_topics(topic_words)
 
 if __name__ == '__main__':
-    print("Starting Problem 1 test with first eigen vector...")
-    test_part_1(0)
-    print("Starting Problem 1 test with second eigen vector...")
-    test_part_1(1)
-    print("Starting Problem 2 test...")
+    test_part_1()
     test_part_2()
     
 
